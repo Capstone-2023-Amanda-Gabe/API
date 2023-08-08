@@ -3,7 +3,7 @@ Amanda, Gabe
 
 🧗🏽**Mission Statement**
 
-At [App Name], our mission is to empower to express their unique style through thoughtful outfit planning effortlessly. We believe in simplifying daily routines by offering a seamless platform that combines fashion, convenience, and personalized recommendations. Our commitment is to inspire confidence, enhance creativity, and make every day a runway for self-expression. 
+At [App Name], our mission is to empower people to express their unique style through thoughtful outfit planning effortlessly. We believe in simplifying daily routines by offering a seamless platform that combines fashion, convenience, and personalized recommendations. Our commitment is to inspire confidence, enhance creativity, and make every day a runway for self-expression. 
 
 🧑🏽‍💻**Problem Statement** 
 
@@ -12,11 +12,15 @@ Our fashion calendar application [App Name], caters to fashion-conscious individ
 
 📝**User Stories**
 
-As a user with a busy schedule: I should be able to receive the weather forecast for the upcoming week 
-As a fashion conscious:I should be able to create outfits for each day of the week, so I can plan my wardrobe in advance. 
-As a fashion enthusiast: I should be able to receive personalized outfit recommendations based on my style preferences, so I can discover new ways to put together outfits. 
-As a user attending a special event: I should be able to mark the day in the calendar and receive outfit suggestions that match the event’s dress code. 
-As a user who loves sharing fashion inspiration: I should be able to save and share my planned outfits.
+- As a user with a busy schedule: I should be able to receive the weather forecast for the upcoming week
+  
+- As a fashion conscious: I should be able to create outfits for each day of the week, so I can plan my wardrobe in advance.
+  
+- As a fashion enthusiast: I should be able to receive personalized outfit recommendations based on my style preferences, so I can discover new ways to put together outfits.
+  
+- As a user attending a special event: I should be able to mark the day in the calendar and receive outfit suggestions that match the event’s dress code.
+  
+- As a user who loves sharing fashion inspiration: I should be able to save and share my planned outfits.
 
 
 📚**Tech Stack**
@@ -40,6 +44,7 @@ This app will make use of the WeatherAPI to fetch real-time weather information 
 📌**MVP & Future Scope**
 
 - Our MVP consists of providing users with the ability  to schedule their weekly outfits according to both weather conditions and their style preferences.
+  
 - Looking ahead, we aspire to expand by incorporating event-specific outfit planning and recommendations that consider factors such as event type, individual style and weather. 
 
 
