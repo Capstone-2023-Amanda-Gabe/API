@@ -19,11 +19,11 @@ As a user attending a special event: I should be able to mark the day in the cal
 As a user who loves sharing fashion inspiration: I should be able to save and share my planned outfits.
 
 
-**Tech Stack**
+📚**Tech Stack**
 
  We intend on using React, Redux, React Router, and Styled Components (CSS) for the front end and Node.js, Express.js, and OpenWeatherMap API for the backend.
  
-**Milestones and Timeline**
+🗓️**Milestones and Timeline**
 
 - By August 7: We will be done with the GitHub Organization.
   
@@ -32,20 +32,18 @@ As a user who loves sharing fashion inspiration: I should be able to save and sh
 - By August 11: We will be done with the ERD and Wireframe. We will have a better understanding of how exactly we want our app to look and how we would want to approach building it. 
 
 
-**Data Sources (if applicable)**
+📊**Data Sources (if applicable)**
 
 This app will make use of the WeatherAPI to fetch real-time weather information according to the user’s present location. This ensures that the user can select appropriate attire based on the weather conditions while maintaining a sense of fashion and style. 
 
 
-**MVP & Future Scope**
+📌**MVP & Future Scope**
 
 - Our MVP consists of providing users with ability to schedule their weekly outfits according to both weather conditions and their style preferences.
 - Looking ahead, we aspire to expand by incorporating event-specific outfit planning and recommendations that consider factors such as event type, individual style and weather. 
 
 
-**Team and Responsibilities (if applicable)**
+🤝**Team and Responsibilities (if applicable)**
 
 The project team will be composed of Amanda Fairman and Gabriel Innis. We'll coordinate our efforts through Github Project boards for task management, utilize Slack for communication, and manage codebase changes on Github. Gabe's main resposibility will be developing backend features, while Amanda will concentrate on frontend featire development and page creation. 
  
-References and Citations
- If you have taken inspiration from existing projects or research, provide proper references and citations to give credit to the original sources.
