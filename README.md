@@ -3,11 +3,11 @@ Amanda, Gabe
 
 🧗🏽**Mission Statement**
 
-At [App Name], our mission is to empower people to express their unique style through thoughtful outfit planning effortlessly. We believe in simplifying daily routines by offering a seamless platform that combines fashion, convenience, and personalized recommendations. Our commitment is to inspire confidence, enhance creativity, and make every day a runway for self-expression. 
+At LookLog, our mission is to empower people to express their unique style through thoughtful outfit planning effortlessly. We believe in simplifying daily routines by offering a seamless platform that combines fashion, convenience, and personalized recommendations. Our commitment is to inspire confidence, enhance creativity, and make every day a runway for self-expression. 
 
 🧑🏽‍💻**Problem Statement** 
 
-Our fashion calendar application [App Name], caters to fashion-conscious individuals seeking a seamless way to plan their outfits for the week. By offering personalized outfit suggestions based on weather forecasts, [App Name] empowers users to confidently express their style while saving time in their daily routine. With a virtual planner, event planning features, and a focus on convenience, users can effortlessly curate their fashion choices, making each day a canvas for self-expression. 
+Our fashion calendar application LookLog, caters to fashion-conscious individuals seeking a seamless way to plan their outfits for the week. By offering personalized outfit suggestions based on weather forecasts, LookLog empowers users to confidently express their style while saving time in their daily routine. With a virtual planner, event planning features, and a focus on convenience, users can effortlessly curate their fashion choices, making each day a canvas for self-expression. 
 
 
 📝**User Stories**
