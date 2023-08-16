@@ -4,16 +4,20 @@ import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
 import { useState } from "react";
 import { View } from "react-native";
 import { Calendar } from 'react-native-calendars';
-// import SignInScreen from "./pages/signIn";
+import SignInScreen from "./pages/signIn";
 import SignUpScreen from "./pages/signUp";
+
+
 const CLERK_PUBLISHABLE_KEY = "pk_test_cHJvbXB0LWtpdC03Ni5jbGVyay5hY2NvdW50cy5kZXYk"
+
 export default function App() {
   const [selected, setSelected] = useState('');
+
   return (
     <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
       <SafeAreaView style={styles.container}>
         <SignedIn>
-          <Text>You are Signed in</Text>
+          <Text style={styles.signedInText}>You are Signed in</Text>
           <View style={styles.calenderContainer}>
     <Calendar
     style={{
@@ -21,7 +25,7 @@ export default function App() {
       borderColor: 'gray',
       heigth: 350
     }}
-    current={'2012-03-01'}
+    current={'2023-08-01'}
     // onDayPress={day => {
     //   console.log('selected day', day)
     // }}
@@ -40,7 +44,7 @@ export default function App() {
           </View>
         </SignedIn>
         <SignedOut>
-         <SignUpScreen/>
+         <SignInScreen/>
         </SignedOut>
       </SafeAreaView>
     </ClerkProvider>
@@ -54,5 +58,20 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  signedInText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 20,
+  },
+  calenderContainer: {
+    flex: 1,
+    width: "100",
+  },
+  calendar: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 10,
+    height: 400,
   },
 }); 
