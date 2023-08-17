@@ -1,8 +1,10 @@
 import React from "react";
 import { Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
 import { useSignIn } from "@clerk/clerk-expo";
+import { ImageBackground } from "react-native";
+import { Button } from "react-native";
 
-export default function SignInScreen() {
+export default function SignInScreen({ navigation }) {
   const { signIn, setActive, isLoaded } = useSignIn();
 
   const [emailAddress, setEmailAddress] = React.useState("");
@@ -55,8 +57,11 @@ export default function SignInScreen() {
       <TouchableOpacity styles={styles.button}onPress={onSignInPress}>
         <Text styles={styles.buttonText}>Sign in</Text>
       </TouchableOpacity>
+      <Button
+        title="Sign Up?"
+        onPress={() => navigation.navigate('Sign Up?')}
+      />
       </ImageBackground>
-    {/* // </View> */}
   );
 }
 
