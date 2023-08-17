@@ -1,13 +1,15 @@
 import React from "react";
-import { Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
+import { ImageBackground,Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
 import { useSignIn } from "@clerk/clerk-expo";
 
 export default function SignInScreen() {
+  const image = {url : 'https://i.pinimg.com/originals/b6/76/ba/b676ba0be8f3dab0d464d83ea0d2ba14.jpg'}
   const { signIn, setActive, isLoaded } = useSignIn();
 
   const [emailAddress, setEmailAddress] = React.useState("");
   const [password, setPassword] = React.useState("");
 
+  
   const onSignInPress = async () => {
     if (!isLoaded) {
       return;
@@ -27,46 +29,63 @@ export default function SignInScreen() {
   };
 
   return (
-    // <View style={styles.container}>
-    <ImageBackground 
-    source={require}>
-
     
-      {/* <View styles={styles.inputContainer}> */}
+    <View style={styles.container}>
+      <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+        <View style={styles.content}>
+     
         <TextInput
         styles={styles.input}
           autoCapitalize="none"
           value={emailAddress}
           placeholder="Email..."
           onChangeText={(emailAddress) => setEmailAddress(emailAddress)}
+          placeholderTextColor="white"
         />
-      {/* </View> */}
-
-      {/* <View styles={styles.inputContainer}> */}
+     
         <TextInput
         style={styles.input}
+        autoCapitalize="none"
           value={password}
           placeholder="Password..."
           secureTextEntry={true}
           onChangeText={(password) => setPassword(password)}
+          placeholderTextColor="white"
         />
-      {/* </View> */}
 
       <TouchableOpacity styles={styles.button}onPress={onSignInPress}>
-        <Text styles={styles.buttonText}>Sign in</Text>
-      </TouchableOpacity>
+        <Text styles={styles.buttonText}>Sign In</Text>
+        
+      </TouchableOpacity>  
+      </View>
       </ImageBackground>
-    {/* // </View> */}
+    </View>
+   
   );
 }
 
 const styles = StyleSheet.create({
   container:{
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    paddingHorizontal: 20,
+    width: "100%",
+    // alignItems: "center",
+    // justifyContent: "center",
+    // paddingHorizontal: 20,
+   
   },
+  image:{
+    flex: 1,
+    width: "100%",
+    
+  },
+  content:{
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 20,
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
+
   input: {
     width: "100%",
     marginBottom: 20,
@@ -75,8 +94,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#ccc",
     borderRadius: 5,
-    color:"#FFD700",
-
+    color:"white",
+   
   },
   button:{
     backgroundColor: "#007bff",
@@ -85,9 +104,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   buttonText: {
-    color: "#fff",
+    color: "white",
     fontSize: 16,
     textAlign: "center"
 
   },
+ 
 });
