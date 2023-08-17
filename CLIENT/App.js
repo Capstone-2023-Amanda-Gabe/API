@@ -1,10 +1,10 @@
 import React from "react";
 import { SafeAreaView, Text, StyleSheet } from "react-native";
 import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
-import SignUpScreen from "./pages/signUp";
-import SignInScreen from "./pages/signIn";
+// import SignUpScreen from "./pages/signUp";
+import SignInScreen from "./pages/signin";
 
-import SignInWithOAuth from "./pages/signInWithOauth";
+// import SignInWithOAuth from "./pages/signInWithOauth";
 const CLERK_PUBLISHABLE_KEY = "pk_test_cHJvbXB0LWtpdC03Ni5jbGVyay5hY2NvdW50cy5kZXYk"
 export default function App() {
   return (
@@ -14,7 +14,7 @@ export default function App() {
           <Text>You are Signed in</Text>
         </SignedIn>
         <SignedOut>
-         <SignInWithOAuth/>
+         <SignInScreen/>
         </SignedOut>
       </SafeAreaView>
     </ClerkProvider>

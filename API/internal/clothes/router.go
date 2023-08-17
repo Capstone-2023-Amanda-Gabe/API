@@ -1,6 +1,8 @@
 package clothes
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"github.com/gofiber/fiber/v2"
+)
 
 func AddClothesRoutes(app *fiber.App, controller *ClothesController) {
 	clothes := app.Group("/clothes")

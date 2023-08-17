@@ -9,7 +9,6 @@ import (
 	_ "github.com/FashionApp/docs"
 	"github.com/FashionApp/internal/clothes"
 	"github.com/FashionApp/internal/storage"
-	"github.com/FashionApp/internal/todo"
 	"github.com/FashionApp/pkg/shutdown"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
@@ -93,13 +92,10 @@ func buildServer(env config.EnvVars) (*fiber.App, func(), error) {
 	// add docs
 	app.Get("/swagger/*", swagger.HandlerDefault)
 
-	todoStore := todo.NewTodoStorage(db)
-	todoController := todo.NewTodoController(todoStore)
-	todo.AddTodoRoutes(app, todoController)
-
 	clothesStore := clothes.NewClothesStorage(db)
 	clothesController := clothes.NewClothesController(clothesStore)
 	clothes.AddClothesRoutes(app, clothesController)
+
 	return app, func() {
 		storage.CloseMongo(db)
 	}, nil
