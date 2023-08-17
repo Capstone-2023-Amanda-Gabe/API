@@ -130,8 +130,6 @@ var SwaggerInfo = &swag.Spec{
 	Description:      "Fashion app MVP",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
-	LeftDelim:        "{{",
-	RightDelim:       "}}",
 }
 
 func init() {
