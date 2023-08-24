@@ -3,13 +3,9 @@ import { ImageBackground,Text, TextInput, TouchableOpacity, View, StyleSheet } f
 import { useSignIn } from "@clerk/clerk-expo";
 import { ImageBackground } from "react-native";
 import { Button } from "react-native";
-
-<<<<<<< HEAD
-export default function SignInScreen({ navigation }) {
-=======
+import WeatherComponent from "../components/WeatherComponent";
 export default function SignInScreen() {
   const image = {url : 'https://i.pinimg.com/originals/b6/76/ba/b676ba0be8f3dab0d464d83ea0d2ba14.jpg'}
->>>>>>> bcaea18a5a2f8b5f729fd6140736d5717b162271
   const { signIn, setActive, isLoaded } = useSignIn();
 
   const [emailAddress, setEmailAddress] = React.useState("");
@@ -60,15 +56,6 @@ export default function SignInScreen() {
         />
 
       <TouchableOpacity styles={styles.button}onPress={onSignInPress}>
-<<<<<<< HEAD
-        <Text styles={styles.buttonText}>Sign in</Text>
-      </TouchableOpacity>
-      <Button
-        title="Sign Up?"
-        onPress={() => navigation.navigate('Sign Up?')}
-      />
-      </ImageBackground>
-=======
         <Text styles={styles.buttonText}>Sign In</Text>
         
       </TouchableOpacity>  
@@ -76,7 +63,6 @@ export default function SignInScreen() {
       </ImageBackground>
     </View>
    
->>>>>>> bcaea18a5a2f8b5f729fd6140736d5717b162271
   );
 }
 

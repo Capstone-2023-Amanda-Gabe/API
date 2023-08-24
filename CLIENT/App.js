@@ -9,7 +9,7 @@ import SignUpScreen from "./pages/signUp";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SecureStore from "expo-secure-store";
-
+import WeatherComponent from "./components/WeatherComponent";
 const CLERK_PUBLISHABLE_KEY = "pk_test_cHJvbXB0LWtpdC03Ni5jbGVyay5hY2NvdW50cy5kZXYk"
 
 const tokenCache = {
@@ -40,6 +40,7 @@ export default function App() {
         <SignedIn>
           <View style={styles.calenderContainer}>
             <CalendarComponent setSelected={setSelected}/>
+            <WeatherComponent></WeatherComponent>
             <Text>{selectedDay}</Text>
           </View>
         </SignedIn>
@@ -71,4 +72,4 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100",
   },
-}); s
+});
