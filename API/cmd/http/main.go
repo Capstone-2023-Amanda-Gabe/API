@@ -7,8 +7,8 @@ import (
 
 	"github.com/FashionApp/config"
 	_ "github.com/FashionApp/docs"
+	"github.com/FashionApp/internal/clothes"
 	"github.com/FashionApp/internal/storage"
-	"github.com/FashionApp/internal/todo"
 	"github.com/FashionApp/pkg/shutdown"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
@@ -16,12 +16,12 @@ import (
 	"github.com/gofiber/swagger"
 )
 
-//	@title			Fashion App
-//	@version		2.0
-//	@description	Fashion app MVP
-//	@contact.name	Gabriel
-//	@license.name	MIT
-//	@BasePath		/
+// @title Fashion App
+// @version 2.0
+// @description Fashion app MVP
+// @contact.name Gabriel
+// @license.name MIT
+// @BasePath /
 func main() {
 	// setup exit code for graceful shutdown
 	var exitCode int
@@ -92,10 +92,9 @@ func buildServer(env config.EnvVars) (*fiber.App, func(), error) {
 	// add docs
 	app.Get("/swagger/*", swagger.HandlerDefault)
 
-	// create the user domain
-	todoStore := todo.NewTodoStorage(db)
-	todoController := todo.NewTodoController(todoStore)
-	todo.AddTodoRoutes(app, todoController)
+	clothesStore := clothes.NewClothesStorage(db)
+	clothesController := clothes.NewClothesController(clothesStore)
+	clothes.AddClothesRoutes(app, clothesController)
 
 	return app, func() {
 		storage.CloseMongo(db)

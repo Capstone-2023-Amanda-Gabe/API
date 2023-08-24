@@ -1,8 +1,9 @@
 import React from "react";
 import { ImageBackground,Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
 import { useSignIn } from "@clerk/clerk-expo";
+import { Button } from "react-native";
 
-export default function SignInScreen() {
+export default function SignInScreen({ navigation }) {
   const image = {url : 'https://i.pinimg.com/originals/b6/76/ba/b676ba0be8f3dab0d464d83ea0d2ba14.jpg'}
   const { signIn, setActive, isLoaded } = useSignIn();
 
@@ -29,13 +30,13 @@ export default function SignInScreen() {
   };
 
   return (
-    
     <View style={styles.container}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
         <View style={styles.content}>
      
         <TextInput
         styles={styles.input}
+        style={{color: 'white'}}
           autoCapitalize="none"
           value={emailAddress}
           placeholder="Email..."
@@ -52,15 +53,20 @@ export default function SignInScreen() {
           onChangeText={(password) => setPassword(password)}
           placeholderTextColor="white"
         />
-
-      <TouchableOpacity styles={styles.button}onPress={onSignInPress}>
-        <Text styles={styles.buttonText}>Sign In</Text>
         
-      </TouchableOpacity>  
+        <TouchableOpacity style={[styles.button, { backgroundColor: '#40050d' }]} onPress={onSignInPress}>
+  <Text style={[styles.buttonText, { color: 'white',fontSize: 18 }]}>Sign In</Text>
+</TouchableOpacity>
+
+
+      <Button
+        title="Sign Up?"
+        onPress={() => navigation.navigate('Sign Up?')}
+      />
       </View>
+     
       </ImageBackground>
     </View>
-   
   );
 }
 
@@ -98,16 +104,15 @@ const styles = StyleSheet.create({
    
   },
   button:{
-    backgroundColor: "#007bff",
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 5,
+    color: "white",
   },
   buttonText: {
     color: "white",
-    fontSize: 16,
+    fontSize: 50,
     textAlign: "center"
-
   },
  
 });
