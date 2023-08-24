@@ -4,7 +4,7 @@ import { ClerkProvider, SignedIn, SignedOut, } from "@clerk/clerk-expo";
 import { useState } from "react";
 import { View } from "react-native";
 import CalendarComponent from "./components/calendar";
-import SignInScreen from "./pages/signIn";
+import SignInScreen from "./pages/signin";
 import SignUpScreen from "./pages/signUp";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
