@@ -7,7 +7,7 @@ const WeatherComponent = ({ day }) => {
   useEffect(() => {
     const apiKey = "bb35fe2b500548f0a6b124415232008";
     const baseURL = "http://api.weatherapi.com/v1/future.json?key=bb35fe2b500548f0a6b124415232008&q=40.65786840,-74.00477610&dt=2023-09-22"
-    fetch(apiUrl)
+    fetch(baseURL)
       .then(response => response.json())
       .then(data => {
         const dayForecast = data.forecast.forecastday[day];

@@ -3,7 +3,7 @@ import { Text, StyleSheet } from "react-native";
 import { ClerkProvider, SignedIn, SignedOut, } from "@clerk/clerk-expo";
 import { useState } from "react";
 import { View } from "react-native";
-import CalendarComponent from "./components/calendar";
+import {Calendar} from 'react-native-calendars';
 import SignInScreen from "./pages/signin";
 import SignUpScreen from "./pages/signUp";
 import { NavigationContainer } from '@react-navigation/native';
@@ -32,17 +32,35 @@ const tokenCache = {
 const Stack = createNativeStackNavigator();
 export default function App() {
 
-  const [selectedDay, setSelected] = useState('');
+  const [selectedDay, setSelectedDay] = useState('');
   
   return (
     <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY} tokenCache={tokenCache}>
       <NavigationContainer>
         <SignedIn>
           <View style={styles.calenderContainer}>
-            <CalendarComponent setSelected={setSelected}/>
-            <WeatherComponent></WeatherComponent>
+            <View style = {styles.centeredContent}>
+            <Calendar
+             style={{
+              borderWidth: 1,
+              borderColor: "gray",
+              height: 350,
+            }}
+            current={"2023-08-24"}
+            markedDates={{
+              "2023-03-01": { selected: true, marked: true, selectedColor: "blue" },
+              "2023-03-02": { marked: true },
+              "2023-03-03": { selected: true, marked: true, selectedColor: "blue" },
+            }}
+            onDayPress={(day) => {
+              setSelectedDay(day.dateString);
+            }}
+          />
+            </View>
+            <WeatherComponent/>
             <Text>{selectedDay}</Text>
-          </View>
+            </View>
+        
         </SignedIn>
         <SignedOut>
             <Stack.Navigator initialRouteName="Sign In?">
@@ -70,6 +88,14 @@ const styles = StyleSheet.create({
   },
   calenderContainer: {
     flex: 1,
-    width: "100",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
+  centeredContent: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+
+  }
 });

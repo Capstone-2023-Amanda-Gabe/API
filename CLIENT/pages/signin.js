@@ -59,10 +59,10 @@ export default function SignInScreen({ navigation }) {
 </TouchableOpacity>
 
 
-      <Button
+      {/* <Button
         title="Sign Up?"
         onPress={() => navigation.navigate('Sign Up?')}
-      />
+      /> */}
       </View>
      
       </ImageBackground>
