@@ -9,7 +9,9 @@ import SignUpScreen from "./pages/signUp";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SecureStore from "expo-secure-store";
-import WeatherComponent from "./components/WeatherComponent";
+import { QueryClient, QueryClientProvider } from 'react-query'
+// import WeatherComponent from "./components/WeatherComponent";
+import LandingPage from "./pages/landingpage";
 const CLERK_PUBLISHABLE_KEY = "pk_test_cHJvbXB0LWtpdC03Ni5jbGVyay5hY2NvdW50cy5kZXYk"
 
 const tokenCache = {
@@ -30,46 +32,34 @@ const tokenCache = {
 };
 
 const Stack = createNativeStackNavigator();
+const queryClient = new QueryClient()
+
 export default function App() {
 
-  const [selectedDay, setSelectedDay] = useState('');
-  
-  return (
+  const [selectedDay, setSelected] = useState('');
+
+  return(
+    <QueryClientProvider client={queryClient}>
     <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY} tokenCache={tokenCache}>
       <NavigationContainer>
         <SignedIn>
+          <Stack.Navigator initialRouteName="Home">
+            <Stack.Screen name="Home" component={LandingPage} />
+            <Stack.Screen name="Calendar" component={CalendarComponent} />
+          </Stack.Navigator>
           <View style={styles.calenderContainer}>
-            <View style = {styles.centeredContent}>
-            <Calendar
-             style={{
-              borderWidth: 1,
-              borderColor: "gray",
-              height: 350,
-            }}
-            current={"2023-08-24"}
-            markedDates={{
-              "2023-03-01": { selected: true, marked: true, selectedColor: "blue" },
-              "2023-03-02": { marked: true },
-              "2023-03-03": { selected: true, marked: true, selectedColor: "blue" },
-            }}
-            onDayPress={(day) => {
-              setSelectedDay(day.dateString);
-            }}
-          />
-            </View>
-            <WeatherComponent/>
-            <Text>{selectedDay}</Text>
-            </View>
-        
+            <CalendarComponent setSelected={setSelected} />
+          </View>
         </SignedIn>
         <SignedOut>
-            <Stack.Navigator initialRouteName="Sign In?">
-              <Stack.Screen name="Sign In?" component={SignInScreen} />
-              <Stack.Screen name="Sign Up?" component={SignUpScreen} />
-            </Stack.Navigator>
+          <Stack.Navigator initialRouteName="Sign In?">
+            <Stack.Screen name="Sign In?" component={SignInScreen} />
+            <Stack.Screen name="Sign Up?" component={SignUpScreen} />
+          </Stack.Navigator>
         </SignedOut>
       </NavigationContainer>
     </ClerkProvider>
+    </QueryClientProvider>
   );
 }
 
@@ -86,16 +76,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 20,
   },
-  calenderContainer: {
-    flex: 1,
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  centeredContent: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-
-  }
+ 
 });
