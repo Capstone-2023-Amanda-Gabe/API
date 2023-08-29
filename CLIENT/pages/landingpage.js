@@ -11,7 +11,7 @@ export default function LandingPage() {
         queryKey: ["WeatherData"],
         queryFn: async () => {
             const { data } = await axios.get('http://api.weatherapi.com/v1/current.json?key=bb35fe2b500548f0a6b124415232008&q=London&aqi=no')
-            console.log(Object.keys(data.current), data.current.condition)
+            // console.log(Object.keys(data.current), data.current.condition)
             return data
         }
     })

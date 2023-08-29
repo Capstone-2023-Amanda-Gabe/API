@@ -3,14 +3,16 @@ import { Text, StyleSheet } from "react-native";
 import { ClerkProvider, SignedIn, SignedOut, } from "@clerk/clerk-expo";
 import { useState } from "react";
 import { View } from "react-native";
-import {Calendar} from 'react-native-calendars';
+// import {Calendar} from 'react-native-calendars';
 import SignInScreen from "./pages/signin";
 import SignUpScreen from "./pages/signUp";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SecureStore from "expo-secure-store";
 import { QueryClient, QueryClientProvider } from 'react-query'
-// import WeatherComponent from "./components/WeatherComponent";
+// import WeatherComponent from "./components/calendar";
+
+import CalendarComponent from "./components/calendar";
 import LandingPage from "./pages/landingpage";
 const CLERK_PUBLISHABLE_KEY = "pk_test_cHJvbXB0LWtpdC03Ni5jbGVyay5hY2NvdW50cy5kZXYk"
 
