@@ -1,13 +1,14 @@
 import { useUser } from "@clerk/clerk-expo";
-import { Image, View, Text } from "react-native";
+import { Image, View, Text, Button } from "react-native";
 import { useQuery } from 'react-query'
 import axios from 'axios'
 import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet } from "react-native";
-export default function LandingPage() {
+
+export default function LandingPage({ navigation }) {
     const { user } = useUser();
 
-    const { data, error, isError, isLoading } = useQuery({
+    const { data, error, isLoading } = useQuery({
         queryKey: ["WeatherData"],
         queryFn: async () => {
             const { data } = await axios.get('http://api.weatherapi.com/v1/current.json?key=bb35fe2b500548f0a6b124415232008&q=London&aqi=no')
@@ -32,12 +33,12 @@ export default function LandingPage() {
                 alignItems: 'center',
                 backgroundColor: 'pink'
             }}
-            >
+        >
             <LinearGradient
                 colors={['white', 'pink']}
                 style={styles.background}
             />
-            
+
             <Text style={{ fontSize: 20 }}>Hello, {user.fullName}</Text>
             <Image
                 style={styles.image}
@@ -46,7 +47,15 @@ export default function LandingPage() {
                 }}
             />
             <Text style={{ fontSize: 20 }}>{data.current.condition.text}</Text>
-            <Text style={{ fontSize: 20 }}>{data.current.temp_c} °C</Text>
+            <Text style={{ fontSize: 20 }}>{data.current.temp_f} °F</Text>
+            <Button
+                title="Calendar"
+                onPress={() => navigation.navigate('Calendar')}
+            />
+            <Button
+                title="Add Outift?"
+                onPress={() => navigation.navigate('Calendar')}
+            />
         </View>
     );
 }
