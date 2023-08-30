@@ -11,12 +11,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SecureStore from "expo-secure-store";
 import { QueryClient, QueryClientProvider } from 'react-query'
 // import WeatherComponent from "./components/calendar";
-
+import WelcomeScreen from "./pages/welcome";
 import CalendarComponent from "./components/calendar";
 import LandingPage from "./pages/landingpage";
 const CLERK_PUBLISHABLE_KEY = "pk_test_cHJvbXB0LWtpdC03Ni5jbGVyay5hY2NvdW50cy5kZXYk"
 
-const tokenCache = {
+const tokenCache = {  
   async getToken(key) {
     try {
       return SecureStore.getItemAsync(key);
@@ -54,8 +54,9 @@ export default function App() {
           </View>
         </SignedIn>
         <SignedOut>
-          <Stack.Navigator initialRouteName="Sign In?">
-            <Stack.Screen name="Sign In?" component={SignInScreen} />
+          <Stack.Navigator initialRouteName="Welcome">
+          <Stack.Screen name="Welcome" component={WelcomeScreen} />
+          <Stack.Screen name="Sign In?" component={SignInScreen} />
             <Stack.Screen name="Sign Up?" component={SignUpScreen} />
           </Stack.Navigator>
         </SignedOut>

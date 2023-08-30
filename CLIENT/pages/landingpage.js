@@ -4,7 +4,7 @@ import { useQuery } from 'react-query'
 import axios from 'axios'
 import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet } from "react-native";
-
+import { useAuth } from "@clerk/clerk-expo";
 export default function LandingPage({ navigation }) {
     const { user } = useUser();
 
@@ -25,6 +25,22 @@ export default function LandingPage({ navigation }) {
         'An error has occurred: ' + {error.message}
     </Text>)
 
+const SignOut = () => {
+    const { isLoaded,signOut } = useAuth();
+    if (!isLoaded) {
+      return null;
+    }
+    return (
+      <View>
+        <Button
+          title="Sign Out"
+          onPress={() => {
+            signOut();
+          }}
+        />
+      </View>
+    );
+  };
     return (
         <View
             style={{
@@ -56,7 +72,8 @@ export default function LandingPage({ navigation }) {
                 title="Add Outift?"
                 onPress={() => navigation.navigate('Calendar')}
             />
-        </View>
+            <SignOut></SignOut>
+       </View>
     );
 }
 

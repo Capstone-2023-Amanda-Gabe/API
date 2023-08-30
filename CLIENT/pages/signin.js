@@ -2,14 +2,30 @@ import React from "react";
 import { ImageBackground,Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
 import { useSignIn } from "@clerk/clerk-expo";
 import { Button } from "react-native";
+import { useState, useEffect } from "react";
 
+const images =  [
+  'https://e1.pxfuel.com/desktop-wallpaper/292/938/desktop-wallpaper-fashion-aesthetic-fashion-collage.jpg',
+  'https://wallpaper.dog/large/20504694.png',
+  'https://wallpaperaccess.com/full/1437797.jpg'
+]
+  
 export default function SignInScreen({ navigation }) {
-  const image = {url : 'https://i.pinimg.com/originals/b6/76/ba/b676ba0be8f3dab0d464d83ea0d2ba14.jpg'}
+  const [ currentImageIndex, setCurrentImageIndex ] = useState(0);
   const { signIn, setActive, isLoaded } = useSignIn();
-
   const [emailAddress, setEmailAddress] = React.useState("");
   const [password, setPassword] = React.useState("");
 
+
+  useEffect(() => {
+    const interval = setInterval(changeBackground, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const changeBackground = () => {
+    const newIndex = Math.floor(Math.random() * images.length);
+    setCurrentImageIndex(newIndex);
+  };
   
   const onSignInPress = async () => {
     if (!isLoaded) {
@@ -29,7 +45,7 @@ export default function SignInScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+      <ImageBackground source={{  uri: images[currentImageIndex] }} resizeMode="cover" style={styles.image}>
         <View style={styles.content}>
      
         <TextInput
@@ -53,14 +69,14 @@ export default function SignInScreen({ navigation }) {
         />
         
         <TouchableOpacity style={[styles.button, { backgroundColor: '#40050d' }]} onPress={onSignInPress}>
-  <Text style={[styles.buttonText, { color: 'white',fontSize: 18 }]}>Sign In</Text>
+  <Text style={[styles.buttonText, { color: 'white',fontSize: 18 }]}>Log In</Text>
 </TouchableOpacity>
 
 
-      {/* <Button
+      <Button
         title="Sign Up?"
         onPress={() => navigation.navigate('Sign Up?')}
-      /> */}
+      />
       </View>
      
       </ImageBackground>

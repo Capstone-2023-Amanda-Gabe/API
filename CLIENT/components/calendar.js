@@ -44,6 +44,8 @@ const styles = StyleSheet.create({
   },
   calenderContainer: {
     flex: 1,
-    width: "100",
+    width: "100%",
+    justifyContent: "center",
+   
   },
 });
