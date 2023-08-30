@@ -13,6 +13,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SecureStore from "expo-secure-store";
 import { QueryClient, QueryClientProvider } from 'react-query'
 // import WeatherComponent from "./components/WeatherComponent";
+import CreateClothesPage from "./pages/createClothes";
 import LandingPage from "./pages/landingpage";
 import OutfitPage from "./pages/outfitbuilder";
 const CLERK_PUBLISHABLE_KEY = "pk_test_cHJvbXB0LWtpdC03Ni5jbGVyay5hY2NvdW50cy5kZXYk"
@@ -51,6 +52,7 @@ export default function App() {
                 <Stack.Screen name="Home" component={LandingPage} />
                 <Stack.Screen name="Calendar" component={CalendarComponent} />
                 <Stack.Screen name="Outfits" component={OutfitPage} />
+                <Stack.Screen name="Create Clothes" component={CreateClothesPage} />
               </Stack.Navigator>
             </SignedIn>
             <SignedOut>
