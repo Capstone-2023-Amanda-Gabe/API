@@ -4,15 +4,33 @@ import { useQuery } from 'react-query'
 import axios from 'axios'
 import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet } from "react-native";
-import { useAuth } from "@clerk/clerk-expo";
+import { useState, useEffect } from 'react';
+import * as Location from 'expo-location';
+import CalendarComponent from "../components/calendar";
+
+
 export default function LandingPage({ navigation }) {
+    const [location, setLocation] = useState({coords:{latitude:"40.7128", longitude:"40.7128"}});
     const { user } = useUser();
+    const [selectedDay, setSelected] = useState('');
+    
+    useEffect(() => {
+        const getPermissions = async () => {
+          let { status } = await Location.requestForegroundPermissionsAsync();
+          if (status !== 'granted') {
+            return;
+          }
+          let currentLocation = await Location.getCurrentPositionAsync({});
+          setLocation(currentLocation);
+        };
+        getPermissions();
+      }, []);
+
 
     const { data, error, isLoading } = useQuery({
         queryKey: ["WeatherData"],
         queryFn: async () => {
-            const { data } = await axios.get('http://api.weatherapi.com/v1/current.json?key=bb35fe2b500548f0a6b124415232008&q=London&aqi=no')
-            // console.log(Object.keys(data.current), data.current.condition)
+            const { data } = await axios.get(`http://api.weatherapi.com/v1/current.json?key=bb35fe2b500548f0a6b124415232008&q=${location.coords.latitude},${location.coords.longitude}&aqi=no`)
             return data
         }
     })
@@ -25,28 +43,12 @@ export default function LandingPage({ navigation }) {
         'An error has occurred: ' + {error.message}
     </Text>)
 
-const SignOut = () => {
-    const { isLoaded,signOut } = useAuth();
-    if (!isLoaded) {
-      return null;
-    }
-    return (
-      <View>
-        <Button
-          title="Sign Out"
-          onPress={() => {
-            signOut();
-          }}
-        />
-      </View>
-    );
-  };
     return (
         <View
             style={{
                 flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
+                // justifyContent: 'center',
+                // alignItems: 'center',
                 backgroundColor: 'pink'
             }}
         >
@@ -54,26 +56,25 @@ const SignOut = () => {
                 colors={['white', 'pink']}
                 style={styles.background}
             />
-
-            <Text style={{ fontSize: 20 }}>Hello, {user.fullName}</Text>
+            <CalendarComponent setSelected={setSelected} navigation={navigation}></CalendarComponent>
+            <View style={{  
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: 'pink'
+            }}>
+                
+            {/* <Text style={{ fontSize: 20 }}>Hello, {user.fullName}</Text> */}    
             <Image
                 style={styles.image}
                 source={{
                     uri: "https:" + data.current.condition.icon
                 }}
             />
-            <Text style={{ fontSize: 20 }}>{data.current.condition.text}</Text>
-            <Text style={{ fontSize: 20 }}>{data.current.temp_f} °F</Text>
-            <Button
-                title="Calendar"
-                onPress={() => navigation.navigate('Calendar')}
-            />
-            <Button
-                title="Add Outift?"
-                onPress={() => navigation.navigate('Calendar')}
-            />
-            <SignOut></SignOut>
-       </View>
+            <Text style={{ fontSize: 50 }}>{data.current.condition.text}</Text>
+            <Text style={{ fontSize: 50 }}>{data.current.temp_f} °F</Text>
+            </View>
+        </View>
     );
 }
 
@@ -86,7 +87,17 @@ const styles = StyleSheet.create({
         height: 50,
     },
     image: {
-        width: 100,
-        height: 100,
+        width: 200,
+        height: 200,
     },
+    calendar: {
+        borderWidth: 1,
+        borderColor: 'gray',
+        borderRadius: 10,
+        height: 200,
+      },
+      calenderContainer: {
+        flex: 1,
+        width: "100",
+      },
 });

@@ -1,10 +1,10 @@
 import { Calendar } from 'react-native-calendars';
 import { View, StyleSheet } from 'react-native';
-import { useState } from 'react';
 import { useUser } from '@clerk/clerk-react';
-
-export default function CalendarComponent({ setSelected }) {
-  const { isLoaded, isSignedIn, user } = useUser();
+import { useDispatch } from "react-redux"
+import { setDay } from '../Redux/selectedDaySlice';
+export default function CalendarComponent({ navigation}) {
+const dispatch = useDispatch()
 
   return (
     <View style={styles.calenderContainer}>
@@ -15,20 +15,15 @@ export default function CalendarComponent({ setSelected }) {
           heigth: 350
         }}
         current={'2023-08-01'}
-        // onDayPress={day => {
-        //   console.log('selected day', day)
-        // }}
         markedDates={{
           '2012-03-01': { selected: true, marked: true, selectedColor: 'blue' },
           '2012-03-02': { marked: true },
           '2012-03-03': { selected: true, marked: true, selectedColor: 'blue' }
         }}
         onDayPress={day => {
-          setSelected(day.dateString);
+          dispatch(setDay(day))
+          navigation.navigate('Outfits');
         }}
-      // markedDates={{
-      //   [selected]: {selected: true, disableTouchEvent: true, selectedDotColor: 'orange'}
-      // }}
       />
     </View>
   )
