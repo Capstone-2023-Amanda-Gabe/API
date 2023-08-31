@@ -18,6 +18,7 @@ import CalendarComponent from "./components/calendar";
 import LandingPage from "./pages/landingpage";
 import OutfitPage from "./pages/outfitbuilder";
 const CLERK_PUBLISHABLE_KEY = "pk_test_cHJvbXB0LWtpdC03Ni5jbGVyay5hY2NvdW50cy5kZXYk"
+import CreateClothesPage from "./pages/createclothes";
 
 const tokenCache = {
   async getToken(key) {
