@@ -4,6 +4,7 @@ import { useQuery } from 'react-query'
 import axios from 'axios'
 import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet } from "react-native";
+import { useAuth } from "@clerk/clerk-expo";
 import { useState, useEffect } from 'react';
 import * as Location from 'expo-location';
 import CalendarComponent from "../components/calendar";
@@ -18,6 +19,7 @@ export default function LandingPage({ navigation }) {
         const getPermissions = async () => {
           let { status } = await Location.requestForegroundPermissionsAsync();
           if (status !== 'granted') {
+
             return;
           }
           let currentLocation = await Location.getCurrentPositionAsync({});
@@ -42,7 +44,22 @@ export default function LandingPage({ navigation }) {
     if (error) return (<Text>
         'An error has occurred: ' + {error.message}
     </Text>)
-
+const SignOut = () => {
+  const { isLoaded,signOut } = useAuth();
+  if (!isLoaded) {
+    return null;
+  }
+  return (
+    <View>
+      <Button
+        title="Sign Out"
+        onPress={() => {
+          signOut();
+        }}
+      />
+    </View>
+  );
+};
     return (
         <View
             style={{
@@ -73,7 +90,9 @@ export default function LandingPage({ navigation }) {
             />
             <Text style={{ fontSize: 50 }}>{data.current.condition.text}</Text>
             <Text style={{ fontSize: 50 }}>{data.current.temp_f} °F</Text>
+
             </View>
+        <SignOut></SignOut>
         </View>
     );
 }
