@@ -6,8 +6,8 @@ import { Provider } from 'react-redux'
 import { useState } from "react";
 import { View } from "react-native";
 // import {Calendar} from 'react-native-calendars';
-import SignInScreen from "./pages/Signup";
-import SignUpScreen from "./pages/Login";
+import SignUpScreen from "./pages/SignUp";
+import LogInScreen from "./pages/LogIn";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as SecureStore from "expo-secure-store";
@@ -44,32 +44,32 @@ export default function App() {
   const [selectedDay, setSelected] = useState("");
 
 
-  return(
+  return (
     <Provider store={store}>
-    <QueryClientProvider client={queryClient}>
-    <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY} tokenCache={tokenCache}>
-      <NavigationContainer>
-        <SignedIn>
-          <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen name="Home" component={LandingPage} />
-            <Stack.Screen name="Calendar" component={CalendarComponent} />
-            <Stack.Screen name="Outfits" component={OutfitPage} />
-            <Stack.Screen name="Create Clothes" component={CreateClothesPage} />
-          </Stack.Navigator>
-          <View style={styles.calenderContainer}>
-            <CalendarComponent setSelected={setSelected} />
-          </View>
-        </SignedIn>
-        <SignedOut>
-          <Stack.Navigator initialRouteName="Splash">
-            <Stack.Screen name="Splash" component={SplashScreen} />
-            <Stack.Screen name="Sign In?" component={SignInScreen} />
-            <Stack.Screen name="Sign Up?" component={SignUpScreen} />
-          </Stack.Navigator>
-        </SignedOut>
-      </NavigationContainer>
-    </ClerkProvider>
-    </QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
+        <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY} tokenCache={tokenCache}>
+          <NavigationContainer>
+            <SignedIn>
+              <Stack.Navigator initialRouteName="Home">
+                <Stack.Screen name="Home" component={LandingPage} />
+                <Stack.Screen name="Calendar" component={CalendarComponent} />
+                <Stack.Screen name="Outfits" component={OutfitPage} />
+                <Stack.Screen name="Create Clothes" component={CreateClothesPage} />
+              </Stack.Navigator>
+              <View style={styles.calenderContainer}>
+                <CalendarComponent setSelected={setSelected} />
+              </View>
+            </SignedIn>
+            <SignedOut>
+              <Stack.Navigator initialRouteName="Splash">
+                <Stack.Screen name="Splash" component={SplashScreen} />
+                <Stack.Screen name="Sign Up?" component={SignUpScreen} />
+                <Stack.Screen name="Log In?" component={LogInScreen} />
+              </Stack.Navigator>
+            </SignedOut>
+          </NavigationContainer>
+        </ClerkProvider>
+      </QueryClientProvider>
     </Provider>
   );
 }

@@ -1,96 +1,172 @@
-import * as React from "react";
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
-import { useSignUp } from "@clerk/clerk-expo";
+import React from "react";
+import {
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+  StyleSheet,
+} from "react-native";
+import { useSignIn } from "@clerk/clerk-expo";
+import { Button } from "react-native";
 
-export default function SignUpScreen() {
-  const { isLoaded, signUp, setActive } = useSignUp();
 
+
+export default function SignInScreen({ navigation }) {
+  const { LogIn, setActive, isLoaded } = useSignIn();
   const [emailAddress, setEmailAddress] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [pendingVerification, setPendingVerification] = React.useState(false);
-  const [code, setCode] = React.useState("");
 
-  // start the sign up process.
-  const onSignUpPress = async () => {
+
+  const onLogInPress = async () => {
     if (!isLoaded) {
       return;
     }
 
     try {
-      await signUp.create({
-        emailAddress,
+      const completeLogIn = await LogIn.create({
+        identifier: emailAddress,
         password,
       });
-
-      // send the email.
-      await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
-
-      // change the UI to our pending section.
-      setPendingVerification(true);
+      await setActive({ session: completeLogIn.createdSessionId });
     } catch (err) {
-      console.error(JSON.stringify(err, null, 2));
-    }
-  };
-
-  // This verifies the user using email code that is delivered.
-  const onPressVerify = async () => {
-    if (!isLoaded) {
-      return;
-    }
-
-    try {
-      const completeSignUp = await signUp.attemptEmailAddressVerification({
-        code,
-      });
-
-      await setActive({ session: completeSignUp.createdSessionId });
-    } catch (err) {
-      console.error(JSON.stringify(err, null, 2));
+      console.log(err);
     }
   };
 
   return (
-    <View>
-      {!pendingVerification && (
-        <View>
-          <View>
-            <TextInput
-              autoCapitalize="none"
-              value={emailAddress}
-              placeholder="Email..."
-              onChangeText={(email) => setEmailAddress(email)}
-            />
-          </View>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerText}>Log In</Text>
+      </View>
+      
+      <View style={styles.content}>
+        <TextInput
+          style={styles.input}
+          // styles={{ color: "white" }}
+          autoCapitalize="none"
+          value={emailAddress}
+          placeholder="Email..."
+          onChangeText={(emailAddress) => setEmailAddress(emailAddress)}
+          placeholderTextColor="white"
+        />
 
-          <View>
-            <TextInput
-              value={password}
-              placeholder="Password..."
-              placeholderTextColor="#000"
-              secureTextEntry={true}
-              onChangeText={(password) => setPassword(password)}
-            />
-          </View>
+        <TextInput
+          style={styles.input}
+          autoCapitalize="none"
+          value={password}
+          placeholder="Password..."
+          secureTextEntry={true}
+          onChangeText={(password) => setPassword(password)}
+          placeholderTextColor="white"
+        />
+        </View>
 
-          <TouchableOpacity onPress={onSignUpPress}>
-            <Text>Log In</Text>
-          </TouchableOpacity>
-        </View>
-      )}
-      {pendingVerification && (
-        <View>
-          <View>
-            <TextInput
-              value={code}
-              placeholder="Code..."
-              onChangeText={(code) => setCode(code)}
-            />
-          </View>
-          <TouchableOpacity onPress={onPressVerify}>
-            <Text>Verify Email</Text>
-          </TouchableOpacity>
-        </View>
-      )}
-    </View>
-  );
-}
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: "#f8146b" }]}
+          onPress={onLogInPress}
+        >
+          <Text style={[styles.buttonText, {  fontSize: 18 }]}>
+            Log In
+          </Text>
+        </TouchableOpacity>
+
+        <Button
+          title="Log In?"
+          onPress={() => navigation.navigate("Log In?")}
+        />
+      </View>
+    
+  )
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: "100%",
+    backgroundColor: "#130c20",
+  },
+
+  header: {
+    backgroundColoir: "#130c20",
+    padding: 15,
+    alignSelf: "flex-start"
+  },
+
+  headerText: {
+    color: "#f8146b",
+    fontSize: 40,
+    fontWeight: "bold",
+    marginLeft: 20,
+  },
+
+  content: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 20,
+    backgroundColor: "#130c20",
+  },
+
+  input: {
+    width: "100%",
+    marginBottom: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 5,
+    color: "white",
+  },
+
+  button: {
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+
+  buttonText: {
+    color: "white",
+    fontSize: 18,
+    textAlign: "center",
+    fontWeight: "bold",
+  },
+});
+
+
+
+
+
+
+
+
+
+
+// const images = [
+//   "https://e1.pxfuel.com/desktop-wallpaper/292/938/desktop-wallpaper-fashion-aesthetic-fashion-collage.jpg",
+//   "https://wallpaper.dog/large/20504694.png",
+//   "https://wallpaperaccess.com/full/1437797.jpg",
+// ];
+
+
+
+
+// useEffect(() => {
+//   const interval = setInterval(changeBackground, 2000);
+//   return () => clearInterval(interval);
+// }, []);
+
+// const changeBackground = () => {
+//   const newIndex = Math.floor(Math.random() * images.length);
+//   setCurrentImageIndex(newIndex);
+// };
+
+
+{/* <ImageBackground
+        source={{ uri: images[currentImageIndex] }}
+        resizeMode="cover"
+        style={styles.image}
+      > */}
+
+
+
+      // import { useState, useEffect } from "react";

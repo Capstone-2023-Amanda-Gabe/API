@@ -1,48 +1,63 @@
-import React from "react";
-import {
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-  StyleSheet,
-} from "react-native";
-import { useSignIn } from "@clerk/clerk-expo";
-import { Button } from "react-native";
-import { useState, useEffect } from "react";
-
+import * as React from "react";
+import { Text, TextInput, TouchableOpacity, View, Button, StyleSheet } from "react-native";
+import { useSignUp } from "@clerk/clerk-expo";
 
 export default function SignUpScreen({ navigation }) {
-  // const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const { signIn, setActive, isLoaded } = useSignIn();
+  const { isLoaded, signUp, setActive } = useSignUp();
+
   const [emailAddress, setEmailAddress] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [pendingVerification, setPendingVerification] = React.useState(false);
+  const [code, setCode] = React.useState("");
 
-  
-  const onSignInPress = async () => {
+
+  const onSignUpPress = async () => {
     if (!isLoaded) {
       return;
     }
 
     try {
-      const completeSignIn = await signIn.create({
-        identifier: emailAddress,
+      await signUp.create({
+        emailAddress,
         password,
       });
-      await setActive({ session: completeSignIn.createdSessionId });
+
+      // send the email.
+      await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
+
+      // change the UI to our pending section.
+      setPendingVerification(true);
     } catch (err) {
-      console.log(err);
+      console.error(JSON.stringify(err, null, 2));
+    }
+  };
+
+  // This verifies the user using email code that is delivered.
+  const onPressVerify = async () => {
+    if (!isLoaded) {
+      return;
+    }
+
+    try {
+      const completeSignUp = await signUp.attemptEmailAddressVerification({
+        code,
+      });
+
+      await setActive({ session: completeSignUp.createdSessionId });
+    } catch (err) {
+      console.error(JSON.stringify(err, null, 2));
     }
   };
 
   return (
     <View style={styles.container}>
-        <View style={styles.content}>
-          <Text style={styles.headerText}>Sign Up</Text>
-          </View>
-          <View style={styles.content}>
+      <View style={styles.header}>
+        <Text style={styles.headerText}>Sign Up</Text>
+      </View>
+
+      <View style={styles.content}>
           <TextInput
-            styles={styles.input}
-            style={{ color: "white" }}
+            style={styles.input}
             autoCapitalize="none"
             value={emailAddress}
             placeholder="Email..."
@@ -55,25 +70,38 @@ export default function SignUpScreen({ navigation }) {
             autoCapitalize="none"
             value={password}
             placeholder="Password..."
+            placeholderTextColor="white"
             secureTextEntry={true}
             onChangeText={(password) => setPassword(password)}
-            placeholderTextColor="white"
           />
 
           <TouchableOpacity
-            style={[styles.button, { backgroundColor: "#40050d" }]}
-            onPress={onSignInPress}
+            style={[styles.button, { backgroundColor: "#f8146b" }]}
+            onPress={onSignUpPress}
           >
             <Text style={[styles.buttonText, { color: "white", fontSize: 18 }]}>
-              Sign Up 
+              Sign Up
             </Text>
           </TouchableOpacity>
+       
+      </View>
 
-          <Button
-            title="Log In?"
-            onPress={() => navigation.navigate("Sign Up?")}
+      {pendingVerification && (
+        <View>
+          <TextInput
+            value={code}
+            placeholder="Code..."
+            onChangeText={(code) => setCode(code)}
           />
+          <TouchableOpacity onPress={onPressVerify}>
+            <Text>Verify Email</Text>
+          </TouchableOpacity>
         </View>
+      )}
+      <Button
+        title="Already have an account?"
+        onPress={() => navigation.navigate("Log In?")}
+      />
     </View>
   );
 }
@@ -82,17 +110,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
+    backgroundColor: "#130c20",
   },
 
-  // header:{
-  //   // backgroundColoir: "#130c20",
-  //   padding:15,
-  // },
-  headerText:{
+  header: {
+    backgroundColor: "#130c20",
+    padding: 15,
+    alignSelf: "flex-start", // Align to the left
+  },
+
+  headerText: {
     color: "#f8146b",
     fontSize: 40,
     fontWeight: "bold",
-    // 
     marginLeft: 20,
   },
 
@@ -104,60 +134,29 @@ const styles = StyleSheet.create({
     backgroundColor: "#130c20",
   },
 
+  
+
   input: {
     width: "100%",
     marginBottom: 20,
-    paddingVertical: 10,
-    paddingHorizontal: 15,
+    paddingVertical: 15,
+    paddingHorizontal: 20,
     borderWidth: 1,
     borderColor: "#ccc",
     borderRadius: 5,
     color: "white",
   },
+
   button: {
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 5,
-    color: "white",
   },
+
   buttonText: {
     color: "white",
-    fontSize: 50,
+    fontSize: 18,
     textAlign: "center",
+    fontWeight: "bold",
   },
 });
-
-
-
-
-
-
-
-
-
-
-// const images = [
-//   "https://e1.pxfuel.com/desktop-wallpaper/292/938/desktop-wallpaper-fashion-aesthetic-fashion-collage.jpg",
-//   "https://wallpaper.dog/large/20504694.png",
-//   "https://wallpaperaccess.com/full/1437797.jpg",
-// ];
-
-
-
-
-// useEffect(() => {
-  //   const interval = setInterval(changeBackground, 2000);
-  //   return () => clearInterval(interval);
-  // }, []);
-
-  // const changeBackground = () => {
-  //   const newIndex = Math.floor(Math.random() * images.length);
-  //   setCurrentImageIndex(newIndex);
-  // };
-
-
-  {/* <ImageBackground
-        source={{ uri: images[currentImageIndex] }}
-        resizeMode="cover"
-        style={styles.image}
-      > */}

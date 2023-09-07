@@ -12,7 +12,7 @@ import {
 export default function SplashScreen({ navigation }) {
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.navigate("Sign In?");
+      navigation.navigate("Sign Up?");
     }, 2000);
 
     return () => clearTimeout(timer);
