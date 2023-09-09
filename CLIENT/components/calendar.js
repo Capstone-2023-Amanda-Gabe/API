@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux"
 import { setDay } from '../Redux/selectedDaySlice';
 export default function CalendarComponent({ navigation}) {
 const dispatch = useDispatch()
-
+  
   return (
     <View style={styles.calenderContainer}>
       <Calendar

@@ -18,7 +18,12 @@ type CloudinaryClient struct {
 	CLOUDINARY_API_ENV_VAR string
 }
 
-func NewCloudinaryClient(CLOUDINARY_CLOUD_NAME string, CLOUNDINARY_API_KEY string, CLOUDINARY_API_SECRET string, CLOUDINARY_API_ENV_VAR string) *CloudinaryClient {
+func NewCloudinaryClient(
+	CLOUDINARY_CLOUD_NAME string,
+	CLOUNDINARY_API_KEY string,
+	CLOUDINARY_API_SECRET string,
+	CLOUDINARY_API_ENV_VAR string,
+) *CloudinaryClient {
 	return &CloudinaryClient{
 		CLOUDINARY_CLOUD_NAME:  CLOUDINARY_CLOUD_NAME,
 		CLOUNDINARY_API_KEY:    CLOUNDINARY_API_KEY,
@@ -61,7 +66,11 @@ func (t *ClothesController) create(c *fiber.Ctx) error {
 
 	c.SaveFile(file, "uploads/"+file.Filename)
 
-	cld, err := cloudinary.NewFromParams(t.CloudinaryClient.CLOUDINARY_CLOUD_NAME, t.CloudinaryClient.CLOUNDINARY_API_KEY, t.CloudinaryClient.CLOUDINARY_API_SECRET)
+	cld, err := cloudinary.NewFromParams(
+		t.CloudinaryClient.CLOUDINARY_CLOUD_NAME,
+		t.CloudinaryClient.CLOUNDINARY_API_KEY,
+		t.CloudinaryClient.CLOUDINARY_API_SECRET,
+	)
 
 	if err != nil {
 		return err

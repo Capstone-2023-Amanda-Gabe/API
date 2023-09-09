@@ -11,7 +11,7 @@ const docTemplate = `{
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
         "contact": {
-            "name": "Gabriel"
+            "name": "Gabriel Inniss"
         },
         "license": {
             "name": "MIT"
@@ -81,42 +81,6 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "clothes.createTodoRequest": {
-            "type": "object",
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "title": {
-                    "type": "string"
-                }
-            }
-        },
-        "clothes.createTodoResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "clothes.todoDB": {
-            "type": "object",
-            "properties": {
-                "completed": {
-                    "type": "boolean"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "title": {
-                    "type": "string"
-                }
-            }
-        },
         "todo.createTodoRequest": {
             "type": "object",
             "properties": {
@@ -163,7 +127,7 @@ var SwaggerInfo = &swag.Spec{
 	BasePath:         "/",
 	Schemes:          []string{},
 	Title:            "Fashion App",
-	Description:      "Fashion app MVP",
+	Description:      "Fashion app",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 }

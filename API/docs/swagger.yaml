@@ -1,28 +1,5 @@
 basePath: /
 definitions:
-  clothes.createTodoRequest:
-    properties:
-      description:
-        type: string
-      title:
-        type: string
-    type: object
-  clothes.createTodoResponse:
-    properties:
-      id:
-        type: string
-    type: object
-  clothes.todoDB:
-    properties:
-      completed:
-        type: boolean
-      description:
-        type: string
-      id:
-        type: string
-      title:
-        type: string
-    type: object
   todo.createTodoRequest:
     properties:
       description:
@@ -48,8 +25,8 @@ definitions:
     type: object
 info:
   contact:
-    name: Gabriel
-  description: Fashion app MVP
+    name: Gabriel Inniss
+  description: Fashion app
   license:
     name: MIT
   title: Fashion App

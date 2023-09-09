@@ -1,16 +1,16 @@
 import React from "react";
-import { ImageBackground,Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
+import { ImageBackground, Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
 import { useSignIn } from "@clerk/clerk-expo";
 import { Button } from "react-native";
 
 export default function SignInScreen({ navigation }) {
-  const image = {url : 'https://i.pinimg.com/originals/b6/76/ba/b676ba0be8f3dab0d464d83ea0d2ba14.jpg'}
+  const image = { url: 'https://i.pinimg.com/originals/b6/76/ba/b676ba0be8f3dab0d464d83ea0d2ba14.jpg' }
   const { signIn, setActive, isLoaded } = useSignIn();
 
   const [emailAddress, setEmailAddress] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  
+
   const onSignInPress = async () => {
     if (!isLoaded) {
       return;
@@ -31,58 +31,58 @@ export default function SignInScreen({ navigation }) {
     <View style={styles.container}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
         <View style={styles.content}>
-     
-        <TextInput
-        styles={styles.input}
-        style={{color: 'white'}}
-          autoCapitalize="none"
-          value={emailAddress}
-          placeholder="Email..."
-          onChangeText={(emailAddress) => setEmailAddress(emailAddress)}
-          placeholderTextColor="white"
-        />
-     
-        <TextInput
-        style={styles.input}
-        autoCapitalize="none"
-          value={password}
-          placeholder="Password..."
-          secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)}
-          placeholderTextColor="white"
-        />
-        
-        <TouchableOpacity style={[styles.button, { backgroundColor: '#40050d' }]} onPress={onSignInPress}>
-  <Text style={[styles.buttonText, { color: 'white',fontSize: 18 }]}>Sign In</Text>
-</TouchableOpacity>
+
+          <TextInput
+            styles={styles.input}
+            style={{ color: 'white' }}
+            autoCapitalize="none"
+            value={emailAddress}
+            placeholder="Email..."
+            onChangeText={(emailAddress) => setEmailAddress(emailAddress)}
+            placeholderTextColor="white"
+          />
+
+          <TextInput
+            style={styles.input}
+            autoCapitalize="none"
+            value={password}
+            placeholder="Password..."
+            secureTextEntry={true}
+            onChangeText={(password) => setPassword(password)}
+            placeholderTextColor="white"
+          />
+
+          <TouchableOpacity style={[styles.button, { backgroundColor: '#40050d' }]} onPress={onSignInPress}>
+            <Text style={[styles.buttonText, { color: 'white', fontSize: 18 }]}>Sign In</Text>
+          </TouchableOpacity>
 
 
-      <Button
-        title="Sign Up?"
-        onPress={() => navigation.navigate('Sign Up?')}
-      />
-      </View>
-     
+          <Button
+            title="Sign Up?"
+            onPress={() => navigation.navigate('Sign Up?')}
+          />
+        </View>
+
       </ImageBackground>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
     width: "100%",
     // alignItems: "center",
     // justifyContent: "center",
     // paddingHorizontal: 20,
-   
+
   },
-  image:{
+  image: {
     flex: 1,
     width: "100%",
-    
+
   },
-  content:{
+  content: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
@@ -98,10 +98,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#ccc",
     borderRadius: 5,
-    color:"white",
-   
+    color: "white",
+
   },
-  button:{
+  button: {
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 5,
@@ -112,5 +112,4 @@ const styles = StyleSheet.create({
     fontSize: 50,
     textAlign: "center"
   },
- 
 });
