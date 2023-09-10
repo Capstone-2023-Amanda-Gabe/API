@@ -1,6 +1,8 @@
 package clothes
 
 import (
+	"fmt"
+
 	"github.com/cloudinary/cloudinary-go/v2"
 	"github.com/cloudinary/cloudinary-go/v2/api/uploader"
 	"github.com/gofiber/fiber/v2"
@@ -58,6 +60,7 @@ type createClothesResponse struct {
 // @Router			/clothes [post]
 func (t *ClothesController) create(c *fiber.Ctx) error {
 	// parse the request body
+	fmt.Println(c.FormValue("image", ""))
 	file, err := c.FormFile("image")
 
 	if err != nil {

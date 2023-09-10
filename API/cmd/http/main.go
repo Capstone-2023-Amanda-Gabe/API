@@ -73,7 +73,11 @@ func buildServer(env config.EnvVars) (*fiber.App, func(), error) {
 	}
 
 	// create the fiber app
-	app := fiber.New()
+	app := fiber.New(
+	// fiber.Config{
+	// 	StreamRequestBody: true,
+	// },
+	)
 
 	// add middleware
 	app.Use(cors.New())
