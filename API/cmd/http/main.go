@@ -18,8 +18,8 @@ import (
 
 // @title Fashion App
 // @version 2.0
-// @description Fashion app MVP
-// @contact.name Gabriel
+// @description Fashion app
+// @contact.name Gabriel Inniss
 // @license.name MIT
 // @BasePath /
 func main() {
@@ -73,7 +73,11 @@ func buildServer(env config.EnvVars) (*fiber.App, func(), error) {
 	}
 
 	// create the fiber app
-	app := fiber.New()
+	app := fiber.New(
+	// fiber.Config{
+	// 	StreamRequestBody: true,
+	// },
+	)
 
 	// add middleware
 	app.Use(cors.New())
@@ -84,11 +88,28 @@ func buildServer(env config.EnvVars) (*fiber.App, func(), error) {
 		return c.SendString("Healthy!")
 	})
 
+	app.Post("/images", func(c *fiber.Ctx) error {
+		file, err := c.FormFile("upload")
+
+		if err != nil {
+			return err
+		}
+
+		c.SaveFile(file, "uploads/"+file.Filename)
+		return c.SendString(file.Filename)
+	})
+
 	// add docs
 	app.Get("/swagger/*", swagger.HandlerDefault)
 
 	clothesStore := clothes.NewClothesStorage(db)
-	clothesController := clothes.NewClothesController(clothesStore)
+	CloudinaryClient := clothes.NewCloudinaryClient(
+		env.CLOUDINARY_CLOUD_NAME,
+		env.CLOUNDINARY_API_KEY,
+		env.CLOUDINARY_API_SECRET,
+		env.CLOUDINARY_API_ENV_VAR,
+	)
+	clothesController := clothes.NewClothesController(clothesStore, CloudinaryClient)
 	clothes.AddClothesRoutes(app, clothesController)
 
 	return app, func() {

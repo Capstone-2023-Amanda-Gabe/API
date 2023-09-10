@@ -15,8 +15,8 @@ func NewUserController(storage *UserStorage) *UserController {
 }
 
 type createUserRequest struct {
-	ClerkID string `json:"title"`
-	Name    string `json:"description"`
+	ClerkID string `json:"_id"`
+	Name    string `json:"name"`
 }
 
 type createUserResponse struct {

@@ -12,7 +12,6 @@ import CalendarComponent from "../components/calendar";
 
 export default function LandingPage({ navigation }) {
     const [location, setLocation] = useState({coords:{latitude:"40.7128", longitude:"40.7128"}});
-    const { user } = useUser();
     const [selectedDay, setSelected] = useState('');
     
     useEffect(() => {
@@ -81,7 +80,6 @@ const SignOut = () => {
                 backgroundColor: 'pink'
             }}>
                 
-            {/* <Text style={{ fontSize: 20 }}>Hello, {user.fullName}</Text> */}    
             <Image
                 style={styles.image}
                 source={{
