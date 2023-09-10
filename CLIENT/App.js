@@ -5,18 +5,20 @@ import { store } from './Redux/store'
 import { Provider } from 'react-redux'
 import { useState } from "react";
 import { View } from "react-native";
-import CalendarComponent from "./components/calendar";
-import SignInScreen from "./pages/signin";
-import SignUpScreen from "./pages/signUp";
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+// import {Calendar} from 'react-native-calendars';
+import SignUpScreen from "./pages/Signup";
+import LogInScreen from "./pages/LogIn";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as SecureStore from "expo-secure-store";
 import { QueryClient, QueryClientProvider } from 'react-query'
+import SplashScreen from "./pages/SplashScreen";
+import CalendarComponent from "./components/calendar";
 // import WeatherComponent from "./components/WeatherComponent";
-import CreateClothesPage from "./pages/createClothes";
 import LandingPage from "./pages/landingpage";
 import OutfitPage from "./pages/outfitbuilder";
 const CLERK_PUBLISHABLE_KEY = "pk_test_cHJvbXB0LWtpdC03Ni5jbGVyay5hY2NvdW50cy5kZXYk"
+import CreateClothesPage from "./pages/createClothes";
 
 const tokenCache = {
   async getToken(key) {
@@ -36,10 +38,10 @@ const tokenCache = {
 };
 
 const Stack = createNativeStackNavigator();
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 export default function App() {
-
+  const [selectedDay, setSelected] = useState("");
 
 
   return (
@@ -54,11 +56,15 @@ export default function App() {
                 <Stack.Screen name="Outfits" component={OutfitPage} />
                 <Stack.Screen name="Create Clothes" component={CreateClothesPage} />
               </Stack.Navigator>
+              <View style={styles.calenderContainer}>
+                <CalendarComponent setSelected={setSelected} />
+              </View>
             </SignedIn>
             <SignedOut>
-              <Stack.Navigator initialRouteName="Sign In?">
-                <Stack.Screen name="Sign In?" component={SignInScreen} />
+              <Stack.Navigator initialRouteName="Splash">
+                <Stack.Screen name="Splash" component={SplashScreen} />
                 <Stack.Screen name="Sign Up?" component={SignUpScreen} />
+                <Stack.Screen name="Log In?" component={LogInScreen} />
               </Stack.Navigator>
             </SignedOut>
           </NavigationContainer>
@@ -67,7 +73,6 @@ export default function App() {
     </Provider>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {

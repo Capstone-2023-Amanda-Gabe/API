@@ -38,6 +38,9 @@ const styles = StyleSheet.create({
     height: 400,
   },
   calenderContainer: {
-    width: "100",
+    flex: 1,
+    width: "100%",
+    justifyContent: "center",
+   
   },
 });
