@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import { useState } from "react";
 import { View } from "react-native";
 // import {Calendar} from 'react-native-calendars';
-import SignUpScreen from "./pages/SignUp";
+import SignUpScreen from "./pages/Signup";
 import LogInScreen from "./pages/LogIn";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";

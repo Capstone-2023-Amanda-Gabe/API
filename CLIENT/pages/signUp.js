@@ -1,4 +1,5 @@
 import * as React from "react";
+import TypingAnimation from "../components/TypeAnimation";
 import { Text, TextInput, TouchableOpacity, View, Button, StyleSheet } from "react-native";
 import { useSignUp } from "@clerk/clerk-expo";
 
@@ -55,7 +56,16 @@ export default function SignUpScreen({ navigation }) {
         <Text style={styles.headerText}>Sign Up</Text>
       </View>
 
+
+      
+    <TypingAnimation>
+
+    </TypingAnimation>
+
+
+
       <View style={styles.content}>
+        <TypingAnimationComponent/>
           <TextInput
             style={styles.input}
             autoCapitalize="none"
