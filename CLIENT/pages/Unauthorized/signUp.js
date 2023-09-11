@@ -1,6 +1,13 @@
 import * as React from "react";
-import TypingAnimation from "../components/TypeAnimation";
-import { Text, TextInput, TouchableOpacity, View, Button, StyleSheet } from "react-native";
+// import TypingAnimationComponent from "../components/TypeAnimation";
+import {
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+  Button,
+  StyleSheet,
+} from "react-native";
 import { useSignUp } from "@clerk/clerk-expo";
 
 export default function SignUpScreen({ navigation }) {
@@ -10,7 +17,6 @@ export default function SignUpScreen({ navigation }) {
   const [password, setPassword] = React.useState("");
   const [pendingVerification, setPendingVerification] = React.useState(false);
   const [code, setCode] = React.useState("");
-
 
   const onSignUpPress = async () => {
     if (!isLoaded) {
@@ -56,44 +62,41 @@ export default function SignUpScreen({ navigation }) {
         <Text style={styles.headerText}>Sign Up</Text>
       </View>
 
-
+      {/* 
       
     <TypingAnimation>
 
-    </TypingAnimation>
-
-
+    </TypingAnimation> */}
 
       <View style={styles.content}>
-        <TypingAnimationComponent/>
-          <TextInput
-            style={styles.input}
-            autoCapitalize="none"
-            value={emailAddress}
-            placeholder="Email..."
-            onChangeText={(emailAddress) => setEmailAddress(emailAddress)}
-            placeholderTextColor="white"
-          />
+        {/* <TypingAnimationComponent /> */}
+        <TextInput
+          style={styles.input}
+          autoCapitalize="none"
+          value={emailAddress}
+          placeholder="Email..."
+          onChangeText={(emailAddress) => setEmailAddress(emailAddress)}
+          placeholderTextColor="white"
+        />
 
-          <TextInput
-            style={styles.input}
-            autoCapitalize="none"
-            value={password}
-            placeholder="Password..."
-            placeholderTextColor="white"
-            secureTextEntry={true}
-            onChangeText={(password) => setPassword(password)}
-          />
+        <TextInput
+          style={styles.input}
+          autoCapitalize="none"
+          value={password}
+          placeholder="Password..."
+          placeholderTextColor="white"
+          secureTextEntry={true}
+          onChangeText={(password) => setPassword(password)}
+        />
 
-          <TouchableOpacity
-            style={[styles.button, { backgroundColor: "#f8146b" }]}
-            onPress={onSignUpPress}
-          >
-            <Text style={[styles.buttonText, { color: "white", fontSize: 18 }]}>
-              Sign Up
-            </Text>
-          </TouchableOpacity>
-       
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: "#f8146b" }]}
+          onPress={onSignUpPress}
+        >
+          <Text style={[styles.buttonText, { color: "white", fontSize: 18 }]}>
+            Sign Up
+          </Text>
+        </TouchableOpacity>
       </View>
 
       {pendingVerification && (
@@ -143,8 +146,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     backgroundColor: "#130c20",
   },
-
-  
 
   input: {
     width: "100%",

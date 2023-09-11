@@ -12,7 +12,7 @@ import { Button } from "react-native";
 
 
 export default function SignInScreen({ navigation }) {
-  const { LogIn, setActive, isLoaded } = useSignIn();
+  const { signIn, setActive, isLoaded } = useSignIn();
   const [emailAddress, setEmailAddress] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -23,11 +23,11 @@ export default function SignInScreen({ navigation }) {
     }
 
     try {
-      const completeLogIn = await LogIn.create({
+      const completesignIn = await signIn.create({
         identifier: emailAddress,
         password,
       });
-      await setActive({ session: completeLogIn.createdSessionId });
+      await setActive({ session: completesignIn.createdSessionId });
     } catch (err) {
       console.log(err);
     }

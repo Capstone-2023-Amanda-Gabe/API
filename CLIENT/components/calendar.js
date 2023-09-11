@@ -1,14 +1,14 @@
-import { Calendar } from 'react-native-calendars';
+import { CalendarList } from 'react-native-calendars';
 import { View, StyleSheet } from 'react-native';
 import { useUser } from '@clerk/clerk-react';
 import { useDispatch } from "react-redux"
 import { setDay } from '../Redux/selectedDaySlice';
 export default function CalendarComponent({ navigation}) {
 const dispatch = useDispatch()
-  
+
   return (
     <View style={styles.calenderContainer}>
-      <Calendar
+      <CalendarList
         style={{
           borderWidth: 1,
           borderColor: 'gray',
@@ -22,7 +22,7 @@ const dispatch = useDispatch()
         }}
         onDayPress={day => {
           dispatch(setDay(day))
-          navigation.navigate('Outfits');
+          navigation.navigate('Day');
         }}
       />
     </View>
