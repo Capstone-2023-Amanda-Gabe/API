@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import data from '../Redux/data';
-import { useDispatch, useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { setBrand } from '../Redux/selectedBrandSlice';
 const DropdownComponent = (value, setValue) => {
     const selectedBrand = useSelector(state => state.selectedBrand.value)
     const [isFocus, setIsFocus] = useState(false);
     const dispatch = useDispatch();
-    
+
     const renderLabel = () => {
         if (value || isFocus) {
             return (
@@ -19,7 +19,7 @@ const DropdownComponent = (value, setValue) => {
         }
         return null;
     };
-    
+
     return (
         <View style={styles.container}>
             {renderLabel()}

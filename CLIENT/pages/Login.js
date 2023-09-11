@@ -8,31 +8,24 @@ import {
 } from "react-native";
 import { useSignIn } from "@clerk/clerk-expo";
 import { Button } from "react-native";
-
-
-
 export default function SignInScreen({ navigation }) {
-  const { LogIn, setActive, isLoaded } = useSignIn();
+  const { signIn, setActive, isLoaded } = useSignIn();
   const [emailAddress, setEmailAddress] = React.useState("");
   const [password, setPassword] = React.useState("");
-
-
   const onLogInPress = async () => {
     if (!isLoaded) {
       return;
     }
-
     try {
-      const completeLogIn = await LogIn.create({
+      const completesignIn = await signIn.create({
         identifier: emailAddress,
         password,
       });
-      await setActive({ session: completeLogIn.createdSessionId });
+      await setActive({ session: completesignIn.createdSessionId });
     } catch (err) {
       console.log(err);
     }
   };
-
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -49,7 +42,6 @@ export default function SignInScreen({ navigation }) {
           onChangeText={(emailAddress) => setEmailAddress(emailAddress)}
           placeholderTextColor="white"
         />
-
         <TextInput
           style={styles.input}
           autoCapitalize="none"
@@ -60,7 +52,6 @@ export default function SignInScreen({ navigation }) {
           placeholderTextColor="white"
         />
         </View>
-
         <TouchableOpacity
           style={[styles.button, { backgroundColor: "#f8146b" }]}
           onPress={onLogInPress}
@@ -69,7 +60,6 @@ export default function SignInScreen({ navigation }) {
             Log In
           </Text>
         </TouchableOpacity>
-
         <Button
           title="Log In?"
           onPress={() => navigation.navigate("Log In?")}
@@ -78,27 +68,23 @@ export default function SignInScreen({ navigation }) {
     
   )
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
     backgroundColor: "#130c20",
   },
-
   header: {
     backgroundColoir: "#130c20",
     padding: 15,
     alignSelf: "flex-start"
   },
-
   headerText: {
     color: "#f8146b",
     fontSize: 40,
     fontWeight: "bold",
     marginLeft: 20,
   },
-
   content: {
     flex: 1,
     justifyContent: "center",
@@ -106,7 +92,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     backgroundColor: "#130c20",
   },
-
   input: {
     width: "100%",
     marginBottom: 20,
@@ -117,13 +102,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     color: "white",
   },
-
   button: {
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 5,
   },
-
   buttonText: {
     color: "white",
     fontSize: 18,
@@ -131,6 +114,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
+
+
+
 
 
 

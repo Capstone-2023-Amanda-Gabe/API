@@ -60,15 +60,15 @@ export default function CreateClothesPage() {
 
   console.log("reload");
   const postClothes = async (formData) => {
-    const result = await fetch("http://127.0.0.1:8900/clothes",{
+    const result = await fetch("http://127.0.0.1:8900/clothes", {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
         "Content-Type": "multipart/form-data",
       },
       body: formData,
     },
-      );
-      console.log(result)
+    );
+    console.log(result)
   };
 
   const handleSubmit = () => {

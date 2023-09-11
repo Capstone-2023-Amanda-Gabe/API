@@ -1,8 +1,7 @@
 import * as React from "react";
-import TypingAnimation from "../components/TypeAnimation";
+import Typewriter from "../components/Typewritter";
 import { Text, TextInput, TouchableOpacity, View, Button, StyleSheet } from "react-native";
 import { useSignUp } from "@clerk/clerk-expo";
-
 export default function SignUpScreen({ navigation }) {
   const { isLoaded, signUp, setActive } = useSignUp();
 
@@ -10,6 +9,7 @@ export default function SignUpScreen({ navigation }) {
   const [password, setPassword] = React.useState("");
   const [pendingVerification, setPendingVerification] = React.useState(false);
   const [code, setCode] = React.useState("");
+
 
 
   const onSignUpPress = async () => {
@@ -51,49 +51,51 @@ export default function SignUpScreen({ navigation }) {
   };
 
   return (
+
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>Sign Up</Text>
+        <Text style={styles.headerText}>
+          Sign Up
+        </Text>
       </View>
 
-
-      
-    <TypingAnimation>
-
-    </TypingAnimation>
-
-
+      <View style={styles.typewriterContainer}>
+        <Typewriter
+          text={"Welcome to LookLogg, Sign Up to get started"}
+          delay={200}
+          infinite
+        />
+      </View>
 
       <View style={styles.content}>
-        <TypingAnimationComponent/>
-          <TextInput
-            style={styles.input}
-            autoCapitalize="none"
-            value={emailAddress}
-            placeholder="Email..."
-            onChangeText={(emailAddress) => setEmailAddress(emailAddress)}
-            placeholderTextColor="white"
-          />
+        <TextInput
+          style={styles.input}
+          autoCapitalize="none"
+          value={emailAddress}
+          placeholder="Email..."
+          onChangeText={(emailAddress) => setEmailAddress(emailAddress)}
+          placeholderTextColor="white"
+        />
 
-          <TextInput
-            style={styles.input}
-            autoCapitalize="none"
-            value={password}
-            placeholder="Password..."
-            placeholderTextColor="white"
-            secureTextEntry={true}
-            onChangeText={(password) => setPassword(password)}
-          />
+        <TextInput
+          style={styles.input}
+          autoCapitalize="none"
+          value={password}
+          placeholder="Password..."
+          placeholderTextColor="white"
+          secureTextEntry={true}
+          onChangeText={(password) => setPassword(password)}
+        />
 
-          <TouchableOpacity
-            style={[styles.button, { backgroundColor: "#f8146b" }]}
-            onPress={onSignUpPress}
-          >
-            <Text style={[styles.buttonText, { color: "white", fontSize: 18 }]}>
-              Sign Up
-            </Text>
-          </TouchableOpacity>
-       
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: "#f8146b" }]}
+          onPress={onSignUpPress}
+        >
+          <Text style={[styles.buttonText, { color: "white", fontSize: 18 }]}>
+            Sign Up
+          </Text>
+        </TouchableOpacity>
+
       </View>
 
       {pendingVerification && (
@@ -109,7 +111,7 @@ export default function SignUpScreen({ navigation }) {
         </View>
       )}
       <Button
-        title="Already have an account?"
+        title="Already have an account? Log In"
         onPress={() => navigation.navigate("Log In?")}
       />
     </View>
@@ -120,13 +122,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
-    backgroundColor: "#130c20",
+     backgroundColor: "#130c20",
   },
 
   header: {
-    backgroundColor: "#130c20",
+    // backgroundColor: "#130c20",
     padding: 15,
     alignSelf: "flex-start", // Align to the left
+  },
+
+  typewriterContainer: {
+    alignItems: "center",
+    marginTop: 20
   },
 
   headerText: {
@@ -136,15 +143,17 @@ const styles = StyleSheet.create({
     marginLeft: 20,
   },
 
+
   content: {
     flex: 1,
     justifyContent: "center",
+    marginTop: 25,
     alignItems: "center",
-    paddingHorizontal: 20,
+    paddingHorizontal: 50,
     backgroundColor: "#130c20",
   },
 
-  
+
 
   input: {
     width: "100%",
