@@ -49,6 +49,7 @@ const data = [
     { "label": "MARC JACOBS", "value": 48 },
     { "label": "PRADA", "value": 49 },
     { "label": "DIESEL", "value": 50 },
-    {"label": "JORDAN", "value": 51}
+    {"label": "JORDAN", "value": 51},
+    {"label": "AMIRI", "value": 52}
 ];
 export default data;

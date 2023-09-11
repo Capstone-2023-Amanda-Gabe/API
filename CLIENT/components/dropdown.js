@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
-import data from '../Redux/data';
+import data from '../misc/data';
 import { useDispatch, useSelector } from "react-redux"
 import { setBrand } from '../Redux/selectedBrandSlice';
 const DropdownComponent = (value, setValue) => {

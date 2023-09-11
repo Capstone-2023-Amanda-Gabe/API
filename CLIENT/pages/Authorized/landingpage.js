@@ -7,7 +7,7 @@ import { StyleSheet } from "react-native";
 import { useAuth } from "@clerk/clerk-expo";
 import { useState, useEffect } from 'react';
 import * as Location from 'expo-location';
-import CalendarComponent from "../components/calendar";
+import CalendarComponent from "../../components/calendar";
 
 
 export default function LandingPage({ navigation }) {
@@ -65,21 +65,21 @@ const SignOut = () => {
                 flex: 1,
                 // justifyContent: 'center',
                 // alignItems: 'center',
-                backgroundColor: 'pink'
+                backgroundColor: '#130c20'
             }}
         >
-            <LinearGradient
-                colors={['white', 'pink']}
+            {/* <LinearGradient
+                colors={['white', '#130c20']}
                 style={styles.background}
-            />
+            /> */}
             <CalendarComponent setSelected={setSelected} navigation={navigation}></CalendarComponent>
-            <View style={{  
+            {/* <View style={{  
                 flex: 1,
                 justifyContent: 'center',
                 alignItems: 'center',
-                backgroundColor: 'pink'
+                backgroundColor: '#130c20'
             }}>
-                
+                        <SignOut></SignOut>
             <Image
                 style={styles.image}
                 source={{
@@ -89,8 +89,8 @@ const SignOut = () => {
             <Text style={{ fontSize: 50 }}>{data.current.condition.text}</Text>
             <Text style={{ fontSize: 50 }}>{data.current.temp_f} °F</Text>
 
-            </View>
-        <SignOut></SignOut>
+            </View> */}
+
         </View>
     );
 }

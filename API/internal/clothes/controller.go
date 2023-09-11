@@ -91,7 +91,7 @@ func (t *ClothesController) create(c *fiber.Ctx) error {
 		})
 	}
 
-	id, err := t.storage.createClothes(req.User_id, resp.SecureURL, req.Name, req.Description, c.Context())
+	id, err := t.storage.createClothes(req.User_id, req.Description, resp.SecureURL, req.Name, c.Context())
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"message": "Failed to create Clothing article",

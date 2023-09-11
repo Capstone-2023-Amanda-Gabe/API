@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Button, Image, View, Platform, TextInput } from "react-native";
+import { Button, Image, View, Platform } from "react-native";
+import { TextInput } from "react-native-paper";
 import * as ImagePicker from "expo-image-picker";
 import { Formik } from "formik";
 import { useSelector } from "react-redux";
-import DropdownComponent from "../components/dropdown";
+import DropdownComponent from "../../components/dropdown";
 import { useQuery, useMutation } from "react-query";
 import axios from "axios";
 import { useUser } from "@clerk/clerk-expo";
-import data from "../Redux/data";
-
+import data from "../../misc/data";
 export default function CreateClothesPage() {
   const [image, setImage] = useState(null);
   const [Brandvalue, setBrandValue] = useState(null);
@@ -99,6 +99,7 @@ export default function CreateClothesPage() {
           placeholder="Enter Name of clothing"
           value={name}
           onChangeText={(name) => setName(name)}
+          mode='outlined'
         />
         <DropdownComponent
           value={Brandvalue}
