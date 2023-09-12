@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#130c20",
   },
   header: {
-    backgroundColoir: "#130c20",
+    backgroundColor: "#130c20",
     padding: 15,
     alignSelf: "flex-start"
   },
@@ -85,18 +85,21 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginLeft: 20,
   },
+
   content: {
     flex: 1,
     justifyContent: "center",
+    marginTop: 25,
     alignItems: "center",
-    paddingHorizontal: 20,
+    paddingHorizontal: 50,
     backgroundColor: "#130c20",
   },
+
   input: {
     width: "100%",
     marginBottom: 20,
-    paddingVertical: 10,
-    paddingHorizontal: 15,
+    paddingVertical: 15,
+    paddingHorizontal: 20,
     borderWidth: 1,
     borderColor: "#ccc",
     borderRadius: 5,
