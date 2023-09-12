@@ -61,7 +61,7 @@ export default function SignUpScreen({ navigation }) {
 
       <View style={styles.typewriterContainer}>
         <Typewriter
-          text={"Welcome to LookLogg, Sign Up to get started"}
+          text={"Welcome to LookLog  Fashion Calendarr"}
           delay={200}
           infinite
         />
@@ -154,16 +154,16 @@ const styles = StyleSheet.create({
   },
 
 
-
   input: {
     width: "100%",
     marginBottom: 20,
     paddingVertical: 15,
     paddingHorizontal: 20,
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: "#6a08f9",
     borderRadius: 5,
     color: "white",
+    fontSize: 16,
   },
 
   button: {
