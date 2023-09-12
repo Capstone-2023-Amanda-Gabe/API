@@ -1,5 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
+import SplashScreen from './SplashScreen';
+import SignUpScreen from './signUp'
+import LogInScreen from './Login'
 
 export default function SignedOutNavigation() {
 

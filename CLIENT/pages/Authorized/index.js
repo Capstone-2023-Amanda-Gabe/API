@@ -5,6 +5,7 @@ import CreateClothesPage from "./createClothes";
 import DayComponent from "./day";
 import { Button } from "react-native";
 import { useSelector } from "react-redux";
+import ProfilePage from "./profilePage";
 export default function LoggedinNavigation() {
 
     const Drawer = createDrawerNavigator();
@@ -13,6 +14,7 @@ export default function LoggedinNavigation() {
     <Drawer.Navigator initialRouteName="Calendar">
       {/* <Drawer.Screen name="Home" component={LandingPage} /> */}
       <Drawer.Screen name="Calendar" component={CalendarComponent} />
+      <Drawer.Screen name="Profile" component={ProfilePage} />
       <Drawer.Screen name="Outfits" component={OutfitPage} />
       <Drawer.Screen name="Create Clothes" component={CreateClothesPage} />
       <Drawer.Screen
