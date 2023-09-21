@@ -50,7 +50,8 @@ const SignOut = () => {
   }
   return (
     <View>
-      <Button
+      <Butto
+      n
         title="Sign Out"
         onPress={() => {
           signOut();

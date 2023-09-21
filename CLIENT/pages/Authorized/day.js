@@ -84,7 +84,7 @@ export default function DayComponent({ navigation }) {
       <View
         style={{
           flex: 1,
-
+          
           backgroundColor: "#130c20",
         }}
       >
