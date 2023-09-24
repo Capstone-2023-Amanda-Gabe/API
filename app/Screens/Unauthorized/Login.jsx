@@ -29,7 +29,7 @@ export default function LoginScreen() {
         password
       );
       console.log(respone);
-    } catch (error) {
+    } catch (error) { 
       console.log(error);
       alert("sign in failed" + error.message);
     } finally {
