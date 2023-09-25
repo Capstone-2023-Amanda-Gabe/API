@@ -36,7 +36,6 @@ export default function CalendarScreen({ navigation }) {
         }}
         onDayPress={(day) => {
           setSelectedDay(day);
-          // setWeatherData(null);
           navigation.navigate('Weather');
         }}
       />

@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Button} from "react-native";
 import { ActivityIndicator, StyleSheet } from "react-native";
 import { useContext } from "react";
 import AppContext from "../../context/appContext";
 import config from "../../config";
 import { useIsFocused } from "@react-navigation/native";
-const WeatherScreen = () => {
-  const {
-    selectedDay: { dateString },
-  } = useContext(AppContext);
-  const { location, weatherData, setWeatherData } = useContext(AppContext);
+import { TouchableOpacity } from "react-native-gesture-handler";
+const WeatherScreen = ({ navigation }) => {
+  const { selectedDay: { dateString }, location, weatherData, setWeatherData } = useContext(AppContext);
   const [weatherLoading, setWeatherLoading] = useState(true);
+  // const [availableClothes, setAvailableClothes] = useState(null);
+
 
   const fetchWeather = async () => {
     try {
@@ -82,11 +82,13 @@ const WeatherScreen = () => {
           <Text>{weatherData.precipitation} %</Text>
           <Text>Precip.</Text>
         </View>
-        <View style={styles.weatherDataboxes}>
+        <View style={styles.weatherDataboxes}> 
           <Text>{weatherData.humidity} %</Text>
           <Text>Humidity </Text>
         </View>
       </View>
+      <Button title="No clohtes? Create Some" onPress={() => navigation.navigate('CreateClothes')}/>
+      {/* <Button title="No clohtes? Create Some" onPress={console.log("pressed")}></Button> */}
     </View>
   );
 };
