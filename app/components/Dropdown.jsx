@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { StyleSheet } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import brands from "../brands";
+import AppContext from "../context/appContext";
 
   const DropdownComponent = () => {
-    const [value, setValue] = useState(null);
+    const {clothingBrand, setClothingBrand} = useContext(AppContext)
+    
+    
 
     return (
       <Dropdown
@@ -20,9 +23,9 @@ import brands from "../brands";
         valueField="value"
         placeholder="Select item"
         searchPlaceholder="Search..."
-        value={value}
+        value={clothingBrand}
         onChange={item => {
-          setValue(item.value);
+            setClothingBrand(item.value);
         }}
       />
     );
@@ -32,10 +35,12 @@ import brands from "../brands";
 
   const styles = StyleSheet.create({
     dropdown: {
-      margin: 16,
-      height: 50,
-      borderBottomColor: 'gray',
-      borderBottomWidth: 0.5,
+        marginVertical: 4,
+        height: 50,
+        borderWidth: 1,
+        borderRadius: 4,
+        padding: 10,
+        backgroundColor: "#fff",
     },
     icon: {
       marginRight: 5,
