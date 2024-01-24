@@ -1,4 +1,4 @@
-MENTEE
+LookLog
 Amanda, Gabe
 
 🧗🏽**Mission Statement**
